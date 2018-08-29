@@ -1,0 +1,294 @@
+
+body {
+	margin: 0;
+	padding:0;
+}
+
+header {
+	overflow: hidden;
+	background-color: #f1f1f1;
+	background-image:url("../images/bkg-header.jpg");
+	padding: 0px 0px;
+	width: 100%;
+	top: 0;
+ }
+div.SlideContainer img {
+	resize: horizontal;
+	width: 100%;
+	height: 400px;
+}
+#contenido{
+	height: 500px;
+}
+ #logo{
+ 	margin-left: 7%;
+	padding: 5px;
+ }
+ #logo-footer{
+  	margin-left: 5%;
+	text-align:left;
+	padding:30px;
+ }
+.navPag {
+	margin-top: 1em;
+	margin-left: 1em;
+}
+.enlaces {
+	float:left;
+	width: 25%;  /* Los enlaces con los n�meros de p�gina ocupar�n s�lo el 25% de ancho y tantas l�neas como sea necesario*/
+}
+ 
+footer{
+	position: relative;
+	bottom: 0;
+	background: black;
+	height: 140px;
+	width: 100%;
+}
+
+@font-face {
+    font-family: DOSIS;
+    src: url(Dosis-Medium.otf);
+}
+
+a{
+	
+	font-family:DOSIS;
+}
+div.producto {
+	display: inline-table;
+    border: 2px solid #D8D8D8;
+    border-radius: 1em;
+    margin: 1%;
+}
+img.imagen {
+	border-top-left-radius: 1em;
+	border-top-right-radius: 1em;
+	width: 270px;
+	height: 270px;
+}
+div.datos {
+	border-top: 10px solid #ededed;
+	background-color: #ededed;
+	border-bottom-left-radius: 1em;
+	border-bottom-right-radius: 1em;
+	height: 230px;
+}
+img.documento, .visorDocu{
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	width: 30px;
+	height: 30px;
+}
+p.precio {
+	font-weight: bold;
+	font-size: larger;
+	text-align: center;
+}
+p.nombre {
+	padding: 1%;
+	font-size-adjust: 0.40;
+	text-align: center;
+	height: 15%;
+}
+
+div.botones {
+	margin-bottom: 30%;
+	text-align: center;
+}
+#aniadir, .visorAdd {
+	float:left;
+	background-color: Black;
+	color: white;
+	height: 50px;
+	font-weight: bold;
+	border: 10px black;
+	
+}
+#mas {
+	float: right;
+	background-color: Black;
+	color: white;
+	height: 50px;
+	width:  80px;
+	font-weight: bold;
+	border: 10px black;
+}
+.enter {
+	margin-left: 25%;
+}
+div.error {
+	color: red;	
+	border: 2px solid red;
+	padding: 10px;
+	margin: 10px;
+}
+.strongpass {
+	background-color: green;
+}
+
+.middlepass {
+	background-color: yellow;
+}
+
+.weakpass {
+	background-color: red;
+}
+
+.nanpass {
+	background-color: lightyellow;
+}
+
+#datosFormu, .login{
+	margin-top: 5%;
+	margin-left: 25%;
+    width: 50%;
+    height: 50%;
+    margin-bottom: 10%;
+}
+label {
+	margin-right: 1em;
+	margin-left:  1em;
+}
+	
+
+#datosFormu div + div, .login div +div {
+    margin-top: 1em;
+    float: left;
+}
+
+.button, .enter{
+	float: none;
+	clear:all;
+	margin-top: 20%;
+	margin-right: 150%;
+}
+.nameUser, .LoginMail{
+	float: none;
+	clear:all;
+	margin-top: 1em;
+
+}	
+.textemsg {
+	margin-left: 1em;
+}
+.visorProducto {
+	display: inline-flex;
+	margin-top: 1%;
+	margin-left: 1%;
+	margin-bottom: 5%;
+}
+.visorImagen {
+	height: 470px;
+	width: 470px;
+    border: 2px solid #D8D8D8;
+    border-radius: 1em;
+	margin-left: 5%;
+	margin-top: 1%;
+}
+.visorDatos{
+	margin-top: 1%;
+	width: 20%;
+	margin-left: 2em;
+	height: 470;
+	width: 400px;
+}
+.visorDesc {
+	text-align: left;
+	margin-right: 2em;
+}
+.visorNombre {
+	font-size: 17px;
+	font-weight: bold;
+
+}
+.visorMenu {
+	display: block;
+	margin-top: auto;
+	margin-bottom: auto;
+	border: 2px solid #D8D8D8;
+	border-radius: 1em;
+	height: 300px;
+	width: 270px;
+	margin-left: 1%;
+}
+
+.visorPrecio {
+	font-weight: bolder;
+	font-size: 20px;
+	text-align: center;
+}
+
+/* ----------------------------------------------- */
+/* --------------- Responsive menu ---------------*/
+/* -----------------------------------------------*/
+/* Eliminar margenes y padding de la lista, poner un fondo negro */
+
+ul.topnav {
+	margin-left: 7%;
+	border-bottom: 3px solid black;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #017f25;
+}
+
+/* Los elementos de la lista ocupan todo el ancho si flotan a la izquierda */
+ul.topnav li {
+	float: left;
+	}
+/* Estilo de los vinculos */
+ul.topnav li a {
+    display: inline-block;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    transition: 0.3s;
+    font-size: 17px;
+}
+
+/* Cambiar el color del fondo al pasar el mouse por encima */
+ul.topnav li a:hover {
+	color:#DDDDDD;
+	}
+
+/* Esconder el boton del men� */
+ul.topnav li.icon {
+	display: none;
+	}
+
+/* Cuando la pantalla es menor de 680 pixeles, esconder todos los items menos el home. Mostras el vinculo al menu */
+@media screen and (max-width:680px) {
+  ul.topnav li:not(:first-child) {display: none;}
+  ul.topnav li.icon {
+	display: block;
+    float: right;
+    
+  }
+
+	/* No mostral el autor */
+	.autor{
+		display: none;
+	}
+}
+
+/* Poner la clase responsive para el que javascript muestre los vinculos al pulsar en el */
+@media screen and (max-width:680px) {
+  ul.topnav.responsive {position: relative;}
+  ul.topnav.responsive li.icon {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+  ul.topnav.responsive li {
+    float: none;
+    display: inline;
+  }
+  ul.topnav.responsive li a {
+    display: block;
+    text-align: left;
+  }
+}

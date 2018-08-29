@@ -1,0 +1,53 @@
+--Función para calcular precio total del pedido
+CREATE OR REPLACE FUNCTION PRECIO_TOTAL
+    (INDPEDIDO IN PEDIDOS.IDPEDIDO%TYPE)
+    RETURN NUMBER
+IS
+    PRECIOFINAL PEDIDOS.PRECIOTOTAL%TYPE;
+BEGIN 
+    SELECT SUM(PRODUCTOS.PRECIO) INTO PRECIOFINAL
+    FROM PRODUCTOS, LINEAPEDIDOS
+    WHERE LINEAPEDIDOS.ID_PEDIDOX = INDPEDIDO
+    AND LINEAPEDIDOS.CODIGO_PRODX = PRODUCTOS.CODIGO;
+    RETURN PRECIOFINAL;
+END PRECIO_TOTAL;  
+
+
+--Función para aplicar ofertas
+CREATE OR REPLACE FUNCTION APLICA_OFERTA
+    (CODIG IN OFERTAS.CODIGO%TYPE)
+    RETURN NUMBER
+IS
+    fechaActual OFERTAS.FECHA_INICIO%TYPE;
+    fechaini    OFERTAS.FECHA_INICIO%TYPE;
+    fechafin    OFERTAS.FECHA_INICIO%TYPE;
+    nuevoPrecio OFERTAS.PRECIOOFERTADO%TYPE;
+    precio OFERTAS.PRECIOANTES%TYPE;
+    producto    OFERTAS.CODIGO_PROD2%TYPE;
+    porcentaje  NUMBER;
+BEGIN 
+    SELECT TO_CHAR(SysDate,'DD/MM/YYYY') todays_date INTO fechaActual FROM dual;
+        IF fechaActual>= fechaini AND fechaActual>=fechafin then
+        SELECT OFERTAS.PRECIOOFERTADO INTO nuevoPrecio FROM OFERTAS;
+        SELECT OFERTAS.CODIGO_PROD2 INTO producto FROM OFERTAS;
+            UPDATE PRODUCTOS
+            SET PRECIO = nuevoPrecio
+            WHERE CODIGO = producto;
+        ELSE
+         Raise_application_error(-20600,'No se puede aplicar la oferta, fuera de fecha');
+    END IF;
+    SELECT OFERTAS.PRECIOANTES INTO precio FROM OFERTAS;
+    SELECT (precio-nuevoPrecio)*100 INTO porcentaje FROM dual;
+    RETURN porcentaje;
+END APLICA_OFERTA;
+
+create or replace FUNCTION ASSERT_EQUALS (salida BOOLEAN, salida_esperada BOOLEAN)
+RETURN VARCHAR2 
+AS
+BEGIN 
+IF(salida = salida_esperada) THEN
+RETURN 'EXITO';
+ELSE 
+RETURN 'FALLO';
+END IF;
+END ASSERT_EQUALS;

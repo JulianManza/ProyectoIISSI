@@ -1,0 +1,19 @@
+﻿Requisitos de informacion:
+	un requisito por clase
+	atributo de cada clase.
+Requisitos Funcionales
+añadir.
+
+Pruebas de aceptacion:
+ Cambiar el formato, enumerar por RN.
+
+ Mapa conceptual, intentar añadir clases
+ 
+ cambiar escenarios de prueba conforme al nuevo mapa concepual.
+ modificar la matriz conforme a los cambios en los requisitos
+
+
+
+Reglas de negocio: 3-4 min: inplementables con un trigger.
+
+Requisitos funcionales 4-5 minimo: consultas que incluyan varias tablas (join).

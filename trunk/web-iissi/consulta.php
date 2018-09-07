@@ -57,6 +57,65 @@ $_SESSION["paginacion"] = $paginacion;
 
 $filas = consulta_paginada($conexion, $query, $pagina_seleccionada, $pag_tam);
 
+
+if(isset($_POST["aniadir"]))
+{
+	if(isset($_SESSION["shopping_cart"]))
+	{
+		$item_array_id = array_column($_SESSION["shopping_cart"], "item_id");
+		if(!in_array($_GET["CODIGO"], $item_array_id))
+		{
+			
+			$precioF = str_replace(
+        array(","),
+		array("."),
+		$_POST["hidden_price"]);
+			$count = count($_SESSION["shopping_cart"]);
+			$item_array = array(
+				'item_id'			=>	$_GET["CODIGO"],
+				'item_name'			=>	$_POST["hidden_name"],
+				'item_price'		=>	$precioF,
+				'cantidad'		=>	$_POST["cantidad"]
+			);
+			$_SESSION["shopping_cart"][$count] = $item_array;
+		}
+		else
+		{
+			echo "El objeto ya está añadido";
+		}
+	}
+	else
+	{
+		$precioF = str_replace(
+        array(","),
+		array("."),
+		$_POST["hidden_price"]);
+		$item_array = array(
+			'item_id'			=>	$_GET["CODIGO"],
+			'item_name'			=>	$_POST["hidden_name"],
+			'item_price'		=>	$precioF,
+			'cantidad'		=>	$_POST["cantidad"]
+		);
+		$_SESSION["shopping_cart"][0] = $item_array;
+	}
+}
+
+
+if(isset($_GET["action"]))
+{
+	if($_GET["action"] == "delete")
+	{
+		foreach($_SESSION["shopping_cart"] as $keys => $values)
+		{
+			if($values["item_id"] == $_GET["CODIGO"])
+			{
+				unset($_SESSION["shopping_cart"][$keys]);
+				echo "Objeto Borrado";
+			}
+		}
+	}
+}
+
 cerrarConexionBD($conexion);
 
 ?>
@@ -66,10 +125,11 @@ cerrarConexionBD($conexion);
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<link rel="stylesheet" type="text/css" href="css/plantilla.css"/><br />
+		<link rel="stylesheet" type="text/css" href="css/plantilla.css"/>
 		<title> SAIND - HOME </title>
 	</head>
 	<body >
+	<div id="wrapper">
 		<?php
 		include_once ("cabecera.php");
 		include_once ("menu.php");
@@ -120,7 +180,8 @@ cerrarConexionBD($conexion);
 	<?php
 		foreach($filas as $fila) {
 	?>
-	<div class="producto">		
+	<div class="producto">
+			<form method="post" action="consulta.php?action=add&CODIGO=<?php echo $fila["CODIGO"]; ?>">	
 			<img class= "imagen" src = "<?php echo $fila["URLIMG"] ?>" alt= "Imagen del Producto" 
 				onerror="this.src='images/noimage.jpg'"/> 
 			<div class= "datos">
@@ -135,11 +196,18 @@ cerrarConexionBD($conexion);
 					<?php echo $fila["PRECIO"]; ?>€
 					
 					</p>
+						<input type="text" name="cantidad" value="1" class="form-control" />
+
+						<input type="hidden" name="hidden_name" value="<?php echo $fila["NOMBRE"]; ?>" />
+
+						<input type="hidden" name="hidden_price" value="<?php echo $fila["PRECIO"]; ?>" />
+					
 					<div class="botones"
 					
 					<p> <button id="aniadir" name="aniadir" type="submit" class="aniadir">
 						Añadir al carrito
 					</button> </p>
+					</form>
 					<form method="get" action="visorProducto.php">
 					<p><button id="mas" name="mas" type="submit" value="<?php echo $fila["CODIGO"] ?>" class="mas"> Más  
 				</button> </p></form>
@@ -147,14 +215,55 @@ cerrarConexionBD($conexion);
 						
 			</div> 
 			</div>
-
+			
 	</div>
 	<?php } ?>
-
+			<div style="clear:both"></div>
+			<br />
+			<h3>Detalles del pedido</h3>
+			<div class="tabla">
+				<table class="table table-bordered">
+					<tr>
+						<th width="40%">Nombre</th>
+						<th width="10%">Cantidad</th>
+						<th width="20%">Precio</th>
+						<th width="15%">Total</th>
+						<th width="5%">Action</th>
+					</tr>
+					<?php
+					if(!empty($_SESSION["shopping_cart"]))
+					{
+						$total = 0;
+						foreach($_SESSION["shopping_cart"] as $keys => $values)
+						{
+					?>
+					<tr>
+						<td><?php echo $values["item_name"]; ?></td>
+						<td><?php echo $values["cantidad"]; ?></td>
+						<td > <?php echo $values["item_price"]; ?>€</td>
+						<td > <?php echo number_format((float)$values["cantidad"] * $values["item_price"], 2);?>€</td>
+						<td ><a href="consulta.php?action=delete&CODIGO=<?php echo $values["item_id"]; ?>"><span class="text-danger">Eliminar</span></a></td>
+					</tr>
+					<?php
+							$total =(float) $total + ($values["cantidad"] * $values["item_price"]);
+						}
+					?>
+					<tr>
+						<td colspan="3" align="right">Total</td>
+						<td align="right"> <?php echo number_format((float)$total, 2); ?>€</td>
+						<td></td>
+					</tr>
+					<?php
+					}
+					?>
+						
+				</table>
+			</div>
 </main>
-		
-<?php
+	<?php
 include_once ("pie.php");
 ?>
+</div>
 	</body>
+
 </html>

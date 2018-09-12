@@ -45,4 +45,4 @@ INSERT INTO productos (CODIGO, NOMBRE, DESCRIPCION, TIPOPRODUCTO, DISPONIBILIDAD
 values (0,'Borna Macho','Conector 10-25','repuesto','Disponible', 2.50,'...','...', 1002,'bor1','10-25');
 
 INSERT INTO clientes ( DNI,NOMBRE_CLI, APELLIDOS, DIRECCION, IDMUNICIPIO, EMAIL, PASS) 
-        VALUES('test', 'test', 'test', 'test', 1, 'test', 'test');
+        VALUES('test', 'test', 'test', 'test', 1, 'test@test.com', 'test');

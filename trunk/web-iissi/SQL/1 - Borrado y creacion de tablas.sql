@@ -5,12 +5,14 @@
 --  BORRADO DE SECUENCIAS
 --------------------------------------------------------
 DROP SEQUENCE sec_municipio;
+DROP SEQUENCE sec_carrito;
 DROP SEQUENCE sec_provincia;
 DROP SEQUENCE sec_cliente;
 DROP SEQUENCE sec_producto;
 --------------------------------------------------------
 --  BORRADO DE TABLAS
 --------------------------------------------------------
+DROP TABLE CARRITOS; 
 DROP TABLE CLIENTES; 
 DROP TABLE PRODUCTOS;
 DROP TABLE MUNICIPIOS;
@@ -19,6 +21,13 @@ DROP TABLE PROVINCIAS;
 --------------------------------------------------------
 --  CREACION DE TABLAS
 --------------------------------------------------------
+
+CREATE TABLE CARRITOS (
+	IDCLIENTE INTEGER NOT NULL,
+	IDCARRITO INTEGER NOT NULL,
+	FOREIGN KEY (IDCLIENTE) REFERENCES CLIENTES(IDCLIENTE),
+	PRIMARY KEY (IDCARRITO) );
+
 CREATE TABLE PROVINCIAS (
 	NOMBRE VARCHAR2(25) NOT NULL,
 	IDPROVINCIA INTEGER NOT NULL,
@@ -62,6 +71,10 @@ CREATE TABLE PRODUCTOS(
 --Secuencia IDCLIENTE
 CREATE   SEQUENCE sec_cliente
   INCREMENT BY 1 START WITH 1;
+  
+--Secuencia IDCLIENTE
+CREATE   SEQUENCE sec_carrito
+	INCREMENT BY 1 START WITH 1;
 
   --Secuencia PRODUCTO
 CREATE   SEQUENCE sec_producto
@@ -79,6 +92,15 @@ START WITH 1 INCREMENT BY 1 NOMAXVALUE;
   FOR EACH ROW
   BEGIN
   SELECT sec_cliente.NEXTVAL INTO :NEW.IDCLIENTE FROM DUAL;
+  END;
+/
+
+ CREATE OR REPLACE TRIGGER crea_ID_carrito
+  BEFORE INSERT ON CARRITOS
+  REFERENCING NEW AS NEW
+  FOR EACH ROW
+  BEGIN
+  SELECT sec_carrito.NEXTVAL INTO :NEW.IDCARRITO FROM DUAL;
   END;
 /
 CREATE OR REPLACE TRIGGER crea_ID_producto

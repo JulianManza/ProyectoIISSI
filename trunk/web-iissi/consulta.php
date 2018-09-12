@@ -57,7 +57,7 @@ $_SESSION["paginacion"] = $paginacion;
 
 $filas = consulta_paginada($conexion, $query, $pagina_seleccionada, $pag_tam);
 
-
+//Añade producto al carrito
 if(isset($_POST["aniadir"]))
 {
 	if(isset($_SESSION["shopping_cart"]))
@@ -65,11 +65,13 @@ if(isset($_POST["aniadir"]))
 		$item_array_id = array_column($_SESSION["shopping_cart"], "item_id");
 		if(!in_array($_GET["CODIGO"], $item_array_id))
 		{
-			
+//La , con la funcion number_format da error ya que la toma como texto, así que aquí la convertimos en un .			
 			$precioF = str_replace(
         array(","),
 		array("."),
 		$_POST["hidden_price"]);
+		
+//Se toman valores del form. La variable $count es la que nos indica el ID del carrito
 			$count = count($_SESSION["shopping_cart"]);
 			$item_array = array(
 				'item_id'			=>	$_GET["CODIGO"],
@@ -86,6 +88,7 @@ if(isset($_POST["aniadir"]))
 	}
 	else
 	{
+		//Si no hay un carrito se crea uno con id 0
 		$precioF = str_replace(
         array(","),
 		array("."),
@@ -100,7 +103,7 @@ if(isset($_POST["aniadir"]))
 	}
 }
 
-
+//Funcion eliminar producto del carrito
 if(isset($_GET["action"]))
 {
 	if($_GET["action"] == "delete")
@@ -253,6 +256,7 @@ cerrarConexionBD($conexion);
 						<td align="right"> <?php echo number_format((float)$total, 2); ?>€</td>
 						<td></td>
 					</tr>
+					<button id="comprar" name="comprar" type="submit" class="comprar">Comprar</button>
 					<?php
 					}
 					?>

@@ -7,4 +7,12 @@ function myToggleMenu() {
         x.className = "topnav";
     }
 }
-	
+
+function vistaCarrito() {
+    var x = document.getElementById("miCarrito");
+     if (x.style.display === "block") {
+        x.style.display = "none";
+    } else {
+        x.style.display = "block";
+    }
+ }

@@ -1,5 +1,4 @@
 // Funciones de validación
-	// EJERCICIO 3: Validación del formulario en cliente con Javascript (después de la validación de HTML5)
 	function validateForm() {
 		// Comprobar que la longitud de la contraseña es >=8, que contiene letras mayúsculas y minúsculas y números
 		var error1 = passwordValidation();
@@ -9,7 +8,6 @@
 		return (error1.length==0) && (error2.length==0);
 	}
 
-	// EJERCICIO 3.1: Comprobar la restricciones del password y aplicar clases CSS mediante JQuery
 	function passwordValidation(){
 		var password = document.getElementById("pass");
 		var pwd = password.value;
@@ -34,7 +32,6 @@
 		return error;
 	}
 	
-	// EJERCICIO 3.2: Campos de contraseña y confirmación de contraseña iguales
 	function passwordConfirmation(){
 		// Obtenemos el campo de password y su valor
         var password = document.getElementById("pass");
@@ -55,7 +52,6 @@
 		return error;
 	}
 
-	// EJERCICIO 2: Calcula la fortaleza de una contraseña: frecuencia de repetición de caracteres
 	function passwordStrength(password){
     		// Creamos un Map donde almacenar las ocurrencias de cada carácter
     		var letters = {};
@@ -76,7 +72,6 @@
     		return Object.keys(letters).length / length;
 	}
 	
-	// EJERCICIO 4: Coloreado del campo de contraseña según su fortaleza
 	function passwordColor(){
 		var passField = document.getElementById("pass");
 		var strength = passwordStrength(passField.value);

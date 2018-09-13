@@ -12,6 +12,7 @@
 		<?php
 			include_once("cabecera.php");
 			include_once("menu.php");
+			include_once ("carrito.php");
 			include_once("slideshow.php");
 		?>
 		

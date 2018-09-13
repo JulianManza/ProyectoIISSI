@@ -36,7 +36,24 @@ div.SlideContainer img {
 	float:left;
 	width: 25%;  /* Los enlaces con los n�meros de p�gina ocupar�n s�lo el 25% de ancho y tantas l�neas como sea necesario*/
 }
- 
+ #datosFormu, .login{
+	margin-top: 5%;
+	margin-left: 25%;
+    width: 50%;
+    height: 50%;
+    margin-bottom: 10%;
+}
+
+#Tcarrito{
+	margin-top: 5%;
+	margin-left: 25%;
+    width: 30%;
+    height: 50%;
+    margin-bottom: 10%;
+}
+#Tcarrito, table, td {
+   border: 1px solid black;
+}
 footer{
 	position: relative;
 	bottom: 0;

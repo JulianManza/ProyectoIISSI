@@ -1,60 +1,43 @@
-<?php
-session_start();
-
-require_once ("gestionBD.php");
-require_once("gestionClientes.php");
-
-if (!isset($_SESSION['login'])){
-Header("Location: login.php");}
-
-
-	$conexion = crearConexionBD();
-	$email = $_SESSION['login'];
-	$id = consultarIDUsuario($conexion,$email);
-	
-	$filas = consultarCarritoUsuario($conexion,$id);
-
-
-
-
-
-?>
-
-<!DOCTYPE html>
-<html lang="es">
-	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<link rel="stylesheet" type="text/css" href="css/plantilla.css"/>
-		<title> SAIND - HOME </title>
-	</head>
-	<body>
-		<?php
-		include_once ("cabecera.php");
-		include_once ("menu.php");
-		?>
-	<main>
-		
-
-
-		
-		
-		<table id="Tcarrito">
-		<h1>FACTURAS:</h1>
-			<?php
-		foreach( $filas as $fila ) {
-	?>
-
-		<tr><td>ID compra: <?php echo $fila["IDCARRITO"]; ?></td><td>Precio: <?php echo $fila["PRECIO"]; ?> €</td></tr>
-		
-			<?php } ?>
-
-		</table>
-
-	</main>
-		
-<?php
-include_once ("pie.php");
-?>
-	</body>
-</html>
+		<div id = "miCarrito">
+	<br />
+			<h3>Detalles del pedido</h3>
+			<div class="tabla">
+				<table class="table table-bordered">
+					<tr>
+						<th width="40%">Nombre</th>
+						<th width="10%">Cantidad</th>
+						<th width="20%">Precio</th>
+						<th width="15%">Total</th>
+						<th width="5%">Action</th>
+					</tr>
+					<?php
+					if(!empty($_SESSION["shopping_cart"]))
+					{
+						$total = 0;
+						foreach($_SESSION["shopping_cart"] as $keys => $values)
+						{
+					?>
+					<tr>
+						<td><?php echo $values["item_name"]; ?></td>
+						<td><?php echo $values["cantidad"]; ?></td>
+						<td > <?php echo $values["item_price"]; ?>€</td>
+						<td > <?php echo number_format((float)$values["cantidad"] * $values["item_price"], 2);?>€</td>
+						<td ><a href="consulta.php?action=delete&CODIGO=<?php echo $values["item_id"]; ?>"><span class="text-danger">Eliminar</span></a></td>
+					</tr>
+					<?php
+							$total =(float) $total + ($values["cantidad"] * $values["item_price"]);
+						}
+					?>
+					<tr>
+						<td colspan="3" align="right">Total</td>
+						<td align="right"> <?php echo number_format((float)$total, 2); ?>€</td>
+						<td></td>
+					</tr>
+					
+					<?php
+					}
+					?>
+				<button href="compar.php" id="comprar" name="comprar" type="submit" class="comprar">Comprar</button>
+				</table>
+			</div>
+			</div>

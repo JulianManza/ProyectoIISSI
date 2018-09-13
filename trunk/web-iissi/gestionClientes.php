@@ -36,3 +36,19 @@ function consultarUsuario($conexion,$email,$pass) {
 	return $stmt->fetchColumn();
 }
 
+function consultarIDUsuario($conexion,$email){
+ 	$consulta = "SELECT IDCLIENTE FROM CLIENTES WHERE EMAIL='$email'";
+	$stmt = $conexion->prepare($consulta);
+	$stmt->execute();
+	return $stmt->fetchColumn();
+	}
+	
+	
+function consultarCarritoUsuario($conexion,$id){
+ 	$consulta = "SELECT * FROM CARRITOS WHERE IDCLIENTE='$id'";
+	return $conexion->query($consulta);
+	}
+?>
+
+
+

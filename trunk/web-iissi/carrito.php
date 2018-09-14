@@ -37,7 +37,7 @@
 					<?php
 					}
 					?>
-				<button href="compar.php" id="comprar" name="comprar" type="submit" class="comprar">Comprar</button>
+				<button id="comprar" name="comprar" type="submit" class="comprar">Comprar<?php crear_carrito($conexion, $id, $total); ?></button>
 				</table>
 			</div>
-			</div>
+</div>

@@ -17,4 +17,12 @@
     }
 }
 
+
+function crear_carrito($conexion, $id, $precio){
+			$stmt=$conexion->prepare('CALL CREAR_CARRITO(:id,:precio)');
+			$stmt->bindParam(':id',$id);
+			$stmt->bindParam(':precio',$precio);
+			$stmt->execute();
+			return "";
+		}
 ?>

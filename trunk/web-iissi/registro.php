@@ -18,16 +18,15 @@
 	
 		$_SESSION['formulario'] = $formulario;
 	}
-	else
+	else{
 		$formulario = $_SESSION['formulario'];
-			
-	// Si hay errores de validación, hay que mostrarlos y marcar los campos (El estilo viene dado y ya se explicará)
-	if (isset($_SESSION["errores"])){
-		$errores = $_SESSION["errores"];
-		unset($_SESSION["errores"]);
+		
 	}
 	
-	
+	if (isset($_SESSION['errores'])){
+		$errores = $_SESSION['errores'];
+		unset($_SESSION['errores']);	
+	}
 	// Creamos una conexión con la BD
 	$conexion = crearConexionBD();
 	
@@ -75,7 +74,20 @@
 			include_once("menu.php");
 		?>
 		
-  <form id="altaUsuario" method="get" action="registrarCliente.php" onsubmit="return validateForm()">
+		
+			<?php 
+		// Mostrar los erroes de validación (Si los hay)
+		if (isset($errores) && count($errores)>0) { 
+	    	echo "<div id=\"div_errores\" class=\"error\">";
+			echo "<h4> Errores en el formulario:</h4>";
+    		foreach($errores as $error){
+    			echo $error;
+			} 
+    		echo "</div>";
+  		}
+	?>
+		
+  <form id="altaUsuario" name="altaUsuario" method="get" action="registrarCliente.php" onsubmit="return validateForm()">
   		<p><i>Los campos obligatorios están marcados con </i><em>*</em></p>
   		<fieldset id="datosFormu" name="datosFormu" class="datosFormu">
   			

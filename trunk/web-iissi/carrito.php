@@ -1,3 +1,18 @@
+<?php
+
+require_once ("gestionBD.php");
+require_once ("gestionProductos.php");
+require_once ("gestionClientes.php");
+
+if (!isset($_SESSION['login'])){
+Header("Location: login.php");}
+	$conexion = crearConexionBD();
+	$email = $_SESSION['login'];
+	$id = consultarIDUsuario($conexion,$email);
+	cerrarConexionBD($conexion);
+
+?>
+
 		<div id = "miCarrito">
 	<br />
 			<h3>Detalles del pedido</h3>
@@ -37,7 +52,11 @@
 					<?php
 					}
 					?>
-				<button id="comprar" name="comprar" type="submit" class="comprar">Comprar<?php crear_carrito($conexion, $id, $total); ?></button>
+				<form action="compra.php" method="post">
+				<input type="hidden" name="hidden_id" value="<?php echo (int)$id; ?>" />
+				<input type="hidden" name="hidden_total" value="<?php echo $total; ?>" />
+				<button id="comprar" name="comprar" type="submit" class="comprar">Comprar</button>
+				</form>
 				</table>
 			</div>
 </div>

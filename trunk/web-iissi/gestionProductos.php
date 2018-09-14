@@ -15,14 +15,24 @@
 	} catch(PDOException $e) {
 		return $e->getMessage();
     }
-}
+	}
 
 
-function crear_carrito($conexion, $id, $precio){
-			$stmt=$conexion->prepare('CALL CREAR_CARRITO(:id,:precio)');
+	    function crear_carrito($conexion, $id, $precio)
+    {
+		try {	
+			$preciof = str_replace(
+		array(","),
+		array("."),
+		$precio);
+			$stmt=$conexion->prepare('CREAR_CARRITO(:id,:precio)');
 			$stmt->bindParam(':id',$id);
-			$stmt->bindParam(':precio',$precio);
+			$stmt->bindParam(':precio',$preciof);
 			$stmt->execute();
-			return "";
-		}
+		return "";}
+		catch(PDOException $e) {
+		return $e->getMessage();
+    }
+    }
+
 ?>

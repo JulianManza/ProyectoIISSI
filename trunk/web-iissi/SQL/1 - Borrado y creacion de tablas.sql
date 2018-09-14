@@ -127,7 +127,7 @@ create or replace PROCEDURE CREAR_CARRITO (
     )
 IS idcarrito CARRITOS.IDCARRITO%TYPE;
    BEGIN
-        SELECT SEC_CARRITOS.NEXTVAL INTO carrito FROM dual;
+        SELECT SEC_CARRITO.NEXTVAL INTO idcarrito FROM dual;
         INSERT INTO carritos (IDCLIENTE, PRECIO) 
         VALUES(id, precio);
 END CREAR_CARRITO;

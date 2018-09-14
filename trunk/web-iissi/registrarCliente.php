@@ -14,12 +14,11 @@
 		$nuevoUsuario["email"] = $_REQUEST["email"];
 		$nuevoUsuario["pass"] = $_REQUEST["pass"];
 		$nuevoUsuario["confirmpass"] = $_REQUEST["confirmpass"];	
-	}
-	else // En caso contrario, vamos al formulario
+	}else {// En caso contrario, vamos al formulario
 		Header("Location: registro.php");
+	}
 	// Guardar la variable local con los datos del formulario en la sesión.
 	$_SESSION["formulario"] = $nuevoUsuario;
-
 	// Validamos el formulario en servidor
 	// Si se produce alguna excepción PDO en la validación, volvemos al formulario informando al usuario
 	try{ 
@@ -81,7 +80,8 @@ function validarDatosUsuario($conexion, $nuevoUsuario){
 	$error = validarProvinciaMunicipio($conexion, $nuevoUsuario["provincia"], $nuevoUsuario["municipio"]);
 	if($error!="")
 		$errores[] = $error;
-	}
+	return $errores;	
+}
 	// Comprueba que la pareja municipio-provincia están en la BD
 function validarProvinciaMunicipio($conexion, $provincia, $municipio){
 	$error="";

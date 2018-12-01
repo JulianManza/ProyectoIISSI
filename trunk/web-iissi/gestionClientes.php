@@ -48,6 +48,11 @@ function consultarCarritoUsuario($conexion,$id){
  	$consulta = "SELECT * FROM CARRITOS WHERE IDCLIENTE='$id'";
 	return $conexion->query($consulta);
 	}
+
+function consultarDatosUsuario($conexion,$email){
+ 	$consulta = "SELECT * FROM CLIENTES WHERE EMAIL='$email'";
+	return $conexion->query($consulta);
+	}
 ?>
 
 

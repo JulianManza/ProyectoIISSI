@@ -18,6 +18,7 @@ if (!isset($_SESSION))
    }
 ?>
 		<li><a href="http://saind.eu/">WEB</a></li>
+		<div id= botonCarrito><li><a <button id= "carrito" onclick="vistaCarrito()">Carrito</button> </a></li></div>
 		<li class="icon">
 				<a href="javascript:void(0);" onclick="myToggleMenu()">&#9776;</a>
 				</li>

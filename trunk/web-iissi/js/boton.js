@@ -8,11 +8,31 @@ function myToggleMenu() {
     }
 }
 
-function vistaCarrito() {
+
+
+
+
+ function vistaCarrito() {
     var x = document.getElementById("miCarrito");
      if (x.style.display === "block") {
         x.style.display = "none";
     } else {
         x.style.display = "block";
-    }
- }
+    } 
+ } 
+			
+/*function vistaCarrito(){
+	var elemento=document.getElementById("miCarrito");
+	var boton=document.getElementById("carrito");
+			boton.onmouseover = function(){mouseOver();};
+			elemento.onmouseover = function(){mouseOver();};
+			boton.onmouseout = function(){mouseOut();};
+			
+	function mouseOver(){
+		elemento.style.display = "block";
+	}
+	function mouseOut() {
+    	elemento.style.display = "none";
+}
+	}	*/
+			

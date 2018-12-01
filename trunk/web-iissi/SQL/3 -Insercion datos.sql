@@ -22,6 +22,24 @@
 		repuestos','equipoSoldadura','Disponible', 599.99,
 		'http://saind.eu/wp-content/uploads/2016/02/CABEZAL_MR4_GZ4E.pdf','http://saind.eu/wp-content/uploads/2016/02/gz4.png', 5,'19081EA','GZ-4/E');
 
+	INSERT INTO productos (CODIGO, NOMBRE, DESCRIPCION, TIPOPRODUCTO, DISPONIBILIDAD, PRECIO, URLDOCU, URLIMG, STOCK, PARTNUMBER, MODELO) 
+	values (0,'Cabezal TTR5 para bobinas de 5 Kg.','Regulación de Voltaje y Amperaje.','equipoSoldadura','Disponible', 750.99,
+		'http://saind.eu/wp-content/uploads/2016/02/CABEZAL_TTR5.pdf','http://saind.eu/wp-content/uploads/2016/02/ttr5.png', 5,'18564AS','TTR5');
+
+	INSERT INTO productos (CODIGO, NOMBRE, DESCRIPCION, TIPOPRODUCTO, DISPONIBILIDAD, PRECIO, URLDOCU, URLIMG, STOCK, PARTNUMBER, MODELO) 
+	values (0,'Cabezal TIG para hilo frio','Alimentación de corriente separada de la antorcha.','equipoSoldadura','Disponible', 359.99,
+		'http://saind.eu/wp-content/uploads/2016/02/SAIND-CABEZAL-TIG-PARA-HILO-FRIO-20160119-181245302.pdf','http://saind.eu/wp-content/uploads/2016/02/cabezal_tig.png', 5,'17564US','TIG');
+
+	INSERT INTO productos (CODIGO, NOMBRE, DESCRIPCION, TIPOPRODUCTO, DISPONIBILIDAD, PRECIO, URLDOCU, URLIMG, STOCK, PARTNUMBER, MODELO) 
+	values (0,'Equipo soldadura MMA-TIG D-420','Equipo de soldadura  420 Amp al 60 % para soldadura MMA-TIG para uso superintensivo','equipoSoldadura','Disponible', 459.99,
+		'http://saind.eu/wp-content/uploads/2016/02/RECTIFICADOR-TD-420.pdf','http://saind.eu/wp-content/uploads/2016/02/TD-420-2.png', 5,'14764UE','D420');
+
+	INSERT INTO productos (CODIGO, NOMBRE, DESCRIPCION, TIPOPRODUCTO, DISPONIBILIDAD, PRECIO, URLDOCU, URLIMG, STOCK, PARTNUMBER, MODELO) 
+	values (0,'Equipo soldadura Inverter ARC 160','Equipo de soldadura inverter  DC . Diseño compacto y portátil con tecnología inverter IGBT','equipoSoldadura','Disponible', 1459.99,
+		'http://saind.eu/wp-content/uploads/2016/09/SAIND-ARC-160.pdf','http://saind.eu/wp-content/uploads/2016/09/ARC-160-C-1.png', 5,'15864UE','ARC160');
+
+
+
 
 INSERT INTO productos (CODIGO, NOMBRE, DESCRIPCION, TIPOPRODUCTO, DISPONIBILIDAD, PRECIO, URLDOCU, URLIMG, STOCK, PARTNUMBER, MODELO) 
 values (0,'Carbo 4316 AC','Electrodo para acero inox. ','consumible','Disponible', 10.99,'...','...', 52,'131A','mod1');

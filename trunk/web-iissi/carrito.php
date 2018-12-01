@@ -12,12 +12,11 @@ Header("Location: login.php");}
 	cerrarConexionBD($conexion);
 
 ?>
-
 		<div id = "miCarrito">
 	<br />
 			<h3>Detalles del pedido</h3>
 			<div class="tabla">
-				<table class="table table-bordered">
+				<table class="table">
 					<tr>
 						<th width="40%">Nombre</th>
 						<th width="10%">Cantidad</th>

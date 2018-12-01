@@ -149,9 +149,9 @@ cerrarConexionBD($conexion);
 					</div>					
 				</div> 
 			
-		</div>
+		
 		<main>
-
+</div>
 <?php
 include_once ("pie.php");
 ?>

@@ -15,10 +15,14 @@
 			include_once ("carrito.php");
 			include_once("slideshow.php");
 		?>
+		<main>
+			
+			
+		</main>
 		
-		<!--CONTENIDO DE LA P�GINA WEB-->
 		
-		<!--FIN CONTENIDO DE LA P�GINA WEB-->
+		
+		
 	<?php
 			include_once("pie.php");
 		?>

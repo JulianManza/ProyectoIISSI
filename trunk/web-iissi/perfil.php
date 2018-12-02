@@ -80,7 +80,6 @@ if (isset($_SESSION["errores"])){
 if (isset($errores))	{
 echo "<div class='error'>";
 foreach ($errores as $error) echo $error;
-echo $usuarioMOD["pass"];
 echo "</div>";
 }	
 		?>

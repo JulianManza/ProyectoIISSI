@@ -3,13 +3,32 @@ session_start();
 require_once ("gestionBD.php");
 require_once ("gestionarDireccion.php");
 require_once ("gestionClientes.php");
-$conexion = crearConexionBD();
+require_once ("gestionConsultas.php");
+
+
 if (!isset($_SESSION['login'])){
 Header("Location: login.php");}
-	$conexion = crearConexionBD();
 	$email = $_SESSION['login'];
-	$cliente = consultarDatosUsuario($conexion,$email);
+//Consulta a la bbdd
+require_once ("gestionBD.php");
+$conexion = crearConexionBD();
+$query = "SELECT * FROM CLIENTES WHERE EMAIL = '$email'";
+$filas = consulta($conexion,$query);
+if (!isset($_SESSION["usuarioMOD"])) {
+	$usuarioMOD["nif"] = " ";
+	$usuarioMOD["nombre"] = " ";
+	$usuarioMOD["apellidos"] = " ";
+	$usuarioMOD["calle"] = " ";
+	$usuarioMOD["municipio"] = " ";
+	$usuarioMOD["provincia"] = " ";
+	$usuarioMOD["email"] = " ";
+	$usuarioMOD["pass"] = " ";
+	$usuarioMOD["id"] = " ";
 	
+	$_SESSION["usuarioMOD"] = $usuarioMOD;
+}	else{
+	$usuarioMOD = $_SESSION["usuarioMOD"];
+}
 if (isset($_SESSION["errores"])){
 	$errores = $_SESSION["errores"];
 	unset($_SESSION["errores"]);
@@ -61,28 +80,32 @@ if (isset($_SESSION["errores"])){
 if (isset($errores))	{
 echo "<div class='error'>";
 foreach ($errores as $error) echo $error;
+echo $usuarioMOD["pass"];
 echo "</div>";
 }	
 		?>
-
-		<form id="altaUsuario" method="get" action="modificarCliente.php">
+		<?php
+		foreach($filas as $cliente){
+			
+		}?>
+		<form id="altaUsuario" method="get" action="modificarusuario.php">
 			  		<p><i>Los campos obligatorios están marcados con </i><em>*</em></p>
   		<fieldset id="datosFormu" name="datosFormu" class="datosFormu">
   			
     <div class="nameUser"><label for="nombre">Nombre:<em>*</em></label>
-			<input id="nombre" name="nombre" type="text" size="40" value="<?php echo $cliente['nombre'];?>"/>
+			<input id="nombre" name="nombre" type="text" size="40" value="<?php echo $cliente["NOMBRE_CLI"];?>"/>
 	</div>
     
     <div><label for="apellidos">Apellidos:</label>
-			<input id="apellidos" name="apellidos" type="text" size="80" value="<?php echo $cliente['apellidos'];?>"/>
+			<input id="apellidos" name="apellidos" type="text" size="80" value="<?php echo $cliente["APELLIDOS"];?>"/>
 	</div>
 	
 	<div><label for="nif">NIF	<em>*	</em></label>
-			<input id="nif" name="nif" type="text" placeholder="12345678X" pattern="^[0-9]{8}[A-Z]" title="Ocho dígitos seguidos de una letra mayúscula" value="<?php echo $cliente['nif'];?>" required>
+			<input id="nif" name="nif" type="text" placeholder="12345678X" pattern="^[0-9]{8}[A-Z]" title="Ocho dígitos seguidos de una letra mayúscula" value="<?php echo $cliente["DNI"];?>" required>
 	</div>
 
     <div><label for="email">Email:	<em>*</em></label>
-			<input id="email" name="email"  type="email" placeholder="usuario@dominio.extension" value="<?php echo $cliente['email'];?>" required/ readonly><br>
+			<input id="email" name="email"  type="email" placeholder="usuario@dominio.extension" value="<?php echo $cliente["EMAIL"];?>" required/ readonly><br>
 	</div>
 	
     <div><label for="pass">Password:	<em>*</em></label>
@@ -93,10 +116,11 @@ echo "</div>";
 			<input type="password" name="confirmpass" id="confirmpass" placeholder="Confirmación de contraseña"  oninput="passwordConfirmation();" required"/>
 	</div>
 	<div><label for="calle">Calle/Avda.:	<em>*</em></label>
-			<input id="calle" name="calle" type="text" size="80" value="<?php echo $cliente['calle'];?>" required/>
+			<input id="calle" name="calle" type="text" size="80" value="<?php echo $cliente["DIRECCION"];?>" required />
+			<input id="idU" name="idU" type="hidden" size="80" value="<?php echo $cliente["IDCLIENTE"];?>" required />
 	</div>
 	<div><label for="provincia">Provincia:	<em>*</em></label>
-			<input list="opcionesProvincias" name="provincia" id="provincia" required value="<?php echo $cliente['provincia'];?>"/>
+			<input list="opcionesProvincias" name="provincia" id="provincia" required value="<?php echo "";?>"/>
 			<datalist id="opcionesProvincias">
 			  	<?php
 			  		$provincias = listarProvincias($conexion);
@@ -107,12 +131,12 @@ echo "</div>";
 			</datalist>
 	</div>
 	<div><label for="municipio">Municipio:	<em>*</em></label>
-			<input id="municipio" name="municipio" type="text" list="opcionesMunicipios" required value="<?php echo $cliente['municipio'];?>">
+			<input id="municipio" name="municipio" type="text" list="opcionesMunicipios" required value="<?php echo "";?>">
 			<datalist id="opcionesMunicipios">
 			</datalist>
 	</div>
 	<div class="button" >
-        <input type="submit" value="Registrar" />
+        <input type="submit" id="editar" name="editar" value="Editar" />
     </div>
     </fieldset>
 		</form>

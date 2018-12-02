@@ -26,6 +26,26 @@
 		header("Location: excepciones.php");
     }
 }
+
+function modificar_cliente($conexion, $usuario){
+	try{
+	$consulta = "CALL UPDATE_CLIENTE(:emailUP; :nombreUP, :appUP, :dniUP, :passUP, :dirUP)";
+
+	$stmt=$conexion->prepare($consulta);
+	$stmt->bindParam(':emailUP',$usuario["email"]);
+	$stmt->bindParam(':nombreUP',$usuario["nombre"]);
+	$stmt->bindParam(':appUP',$usuario["apellidos"]);
+	$stmt->bindParam(':dniUP',$usuario["dni"]);
+	$stmt->bindParam(':passUP',$usuario['pass']);
+	$stmt->bindParam(':dirUP',$usuario["direccion"]);
+ 	$stmt->execute();
+		return "";
+	} catch(PDOException $e) {
+		$_SESSION['excepcion'] = $e->GetMessage();
+		header("Location: excepciones.php");
+    }
+	
+}
   
 function consultarUsuario($conexion,$email,$pass) {
  	$consulta = "SELECT COUNT(*) AS TOTAL FROM CLIENTES WHERE EMAIL=:email AND PASS=:pass";

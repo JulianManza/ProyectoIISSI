@@ -39,9 +39,10 @@
 			   		Pulsa <a href="index.php">aquí</a> para acceder a la web.
 				</div>
 		<?php } else { ?>
-				<h1>El usuario ya existe en la base de datos.</h1>
+				<h1>Cambios aplicados con éxito</h1>
+				<br>Debes volver a entrar para continuar.<br>
 				<div >	
-					Pulsa <a href="registro.php">aquí</a> para volver al formulario.
+					Pulsa <a href="login.php">aquí</a> para volver al formulario.
 				</div>
 		<?php } ?>
 

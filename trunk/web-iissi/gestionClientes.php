@@ -28,7 +28,24 @@
 }
 
 function modificar_cliente($conexion, $usuario){
-	try{
+	
+$sql = "UPDATE clientes SET NOMBRE_CLI = :nombre_cli,
+ APELLIDOS = :apellidos, 
+ DNI = :dni,
+ PASS = :pass,
+ IDMUNICIPIO = :idmunicipio,
+ DIRECCION = :direccion
+ WHERE EMAIL = :email";
+$stmt = $conexion->prepare($sql);
+$stmt->bindParam(':nombre_cli', $usuario["nombre"], PDO::PARAM_STR);
+$stmt->bindParam(':apellidos', $usuario["apellidos"], PDO::PARAM_STR);
+$stmt->bindParam(':dni', $usuario["nif"], PDO::PARAM_STR);
+$stmt->bindParam(':pass', $usuario['pass'], PDO::PARAM_STR);
+$stmt->bindParam(':idmunicipio', $usuario['municipio']);
+$stmt->bindParam(':direccion', $usuario["calle"], PDO::PARAM_STR);
+$stmt->bindParam(':email', $usuario["email"], PDO::PARAM_STR);
+$stmt->execute();
+	/*try{
 	$consulta = "CALL UPDATE_CLIENTE(:emailUP; :nombreUP, :appUP, :dniUP, :passUP, :dirUP)";
 
 	$stmt=$conexion->prepare($consulta);
@@ -44,7 +61,7 @@ function modificar_cliente($conexion, $usuario){
 		$_SESSION['excepcion'] = $e->GetMessage();
 		header("Location: excepciones.php");
     }
-	
+*/
 }
   
 function consultarUsuario($conexion,$email,$pass) {

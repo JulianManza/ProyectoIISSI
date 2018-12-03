@@ -23,19 +23,19 @@
 	include_once("cabecera.php"); 
 ?>	
 
-	<div>
+	<div class="excepcion">
 		<h2>Ups!</h2>
 		<?php if ($destino<>"") { ?>
 		<p>Ocurrió un problema durante el procesado de los datos. Pulse <a href="<?php echo $destino ?>">aquí</a> para volver a la página principal.</p>
 		<?php } else { ?>
 		<p>Ocurrió un problema para acceder a la base de datos. </p>
 		<?php } ?>
-	</div>
+	
 		
-	<div class='excepcion'>	
+	<div>	
 		<?php echo "Información relativa al problema: $excepcion;" ?>
 	</div>
-
+</div>
 <?php	
 	include_once("pie.php");
 ?>	

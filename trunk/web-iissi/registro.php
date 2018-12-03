@@ -77,7 +77,7 @@ echo "</div>";
 }	
 		?>
 
-		<form id="altaUsuario" method="get" action="registrarCliente.php" novalidate>
+		<form id="altaUsuario" method="get" action="registrarCliente.php">
 			  		<p><i>Los campos obligatorios están marcados con </i><em>*</em></p>
   		<fieldset id="datosFormu" name="datosFormu" class="datosFormu">
   			

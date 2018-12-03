@@ -6,15 +6,11 @@ require_once ("gestionClientes.php");
 	
 	$conexion = crearConexionBD();
 
-if(isset($_POST["comprar"])){
-    {
-    crear_carrito($conexion, $_POST["hidden_id"], $_POST["hidden_total"]);
-    }
-}
 
 
 
-cerrarConexionBD($conexion);
+
+
 
 ?>
 
@@ -32,9 +28,29 @@ cerrarConexionBD($conexion);
 		include_once ("cabecera.php");
 		include_once ("menu.php");
 		?>
+		
 		<main>
+	 	<?php if(isset($_POST["hidden_total"]) & $_POST["hidden_total"]!=0){?>
+	 		<div id= "DatosCompra">
+	 			<h1> Compra realizada con exito.</h1>
+		<h1> Detalles de la compra: 
+		<br /> 
+		Número de referencia: SAIND0#<?php echo $_POST["hidden_id"];?> 
+		<br />
+		Importe total: <?php echo $_POST["hidden_total"];?> €</h1>
+		
+		</div>
+	<?php }else{ ?>
+		<h1>
+			<?php $_SESSION['excepcion'] = "No se puede realizar la compra puesto que no hay productos en el carrito.";
+			 header("Location: excepciones.php");
+			?>
+			
+		</h1>
+		
+	<?php } ?>
+	
 
-	 EXITO
 </main>
 	<?php
 include_once ("pie.php");

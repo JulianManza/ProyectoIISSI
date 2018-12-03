@@ -30,11 +30,7 @@ if(isset($_POST["visorAdd"]))
 		if(!in_array($_GET["CODIGO"], $item_array_id))
 		{
 //La , con la funcion number_format da error ya que la toma como texto, así que aquí la convertimos en un .			
-			$precioF = str_replace(
-        array(","),
-		array("."),
-		$_POST["hidden_price"]);
-		
+			$precioF = str_replace(array(","),array("."),$_POST["hidden_price"]);
 //Se toman valores del form. La variable $count es la que nos indica el ID del carrito
 			$count = count($_SESSION["shopping_cart"]);
 			$item_array = array(
@@ -44,10 +40,27 @@ if(isset($_POST["visorAdd"]))
 				'cantidad'		=>	$_POST["cantidad"]
 			);
 			$_SESSION["shopping_cart"][$count] = $item_array;
+			
+    }else{
+			foreach($_SESSION["shopping_cart"] as $keys => $values)
+		{
+			if($values["item_id"] == $_GET["CODIGO"])
+			{
+				$precioF = str_replace(array(","),array("."),$_POST["hidden_price"]);	
+				$cantidad = $values["cantidad"];
+				$item_array = array(
+				'item_id'			=>	$_GET["CODIGO"],
+				'item_name'			=>	$_POST["hidden_name"],
+				'item_price'		=>	$precioF,
+				'cantidad'		=>	$_POST["cantidad"] +$cantidad
+			);
+			$_SESSION["shopping_cart"][$keys] = $item_array;
+			}
 		}
 	}
-	else
-	{
+		
+	}else{
+		
 		//Si no hay un carrito se crea uno con id 0
 		$precioF = str_replace(
         array(","),
@@ -60,9 +73,8 @@ if(isset($_POST["visorAdd"]))
 			'cantidad'		=>	$_POST["cantidad"]
 		);
 		$_SESSION["shopping_cart"][0] = $item_array;
-	}
+		}
 }
-
 //Funcion eliminar producto del carrito
 if(isset($_GET["action"]))
 {
@@ -77,7 +89,6 @@ if(isset($_GET["action"]))
 		}
 	}
 }
-
 cerrarConexionBD($conexion);
 ?>
 <!DOCTYPE html>

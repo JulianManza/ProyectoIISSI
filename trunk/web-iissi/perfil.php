@@ -134,9 +134,9 @@ echo "</div>";
 			<datalist id="opcionesMunicipios">
 			</datalist>
 	</div>
-	<div class="button" >
-        <input type="submit" id="editar" name="editar" value="Editar" />
-    </div>
+	<button id="edit" name="edit" type="submit"  value="editar" class="edit">
+						Editar
+				</button> 
     </fieldset>
 		</form>
 		<?php

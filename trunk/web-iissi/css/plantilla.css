@@ -49,6 +49,7 @@ div.SlideContainer img {
 footer{
 	position:relative;
 	bottom: 0;
+	margin-top: 25%;
 	margin-bottom: 0%;
 	background: black;
 	height: 140px;
@@ -244,13 +245,14 @@ label {
     
 }
 
-#comprar {
+#comprar, #edit {
 	background-color: Black;
 	color: white;
 	text-align: center;
 	height: 30px;
 	font-weight: bold;
 	border: 10px black;
+	margin-top: 3em;
 	margin-bottom: 6px;
 	margin-left: 50%;
 	
@@ -259,8 +261,24 @@ label {
 #botonCarrito {
    float: right;
 }
-	
-
+.excepcion {
+	border-style: solid;
+	border-color: red;
+	margin-top: 5%;
+	margin-bottom: 35%;
+	margin-left: 25%;
+	margin-right: 25%;
+	text-align: center;
+}
+#datosCompra{
+	margin-top: 5%;
+	margin-left: 25%;
+	margin-right: 25%;
+	background-color: white;
+    border: 2px solid #D8D8D8;
+	border-radius: 1em;
+	text-align: center;
+}
 /* ----------------------------------------------- */
 /* --------------- Responsive menu ---------------*/
 /* -----------------------------------------------*/

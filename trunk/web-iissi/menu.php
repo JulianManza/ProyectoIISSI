@@ -8,7 +8,7 @@ if (!isset($_SESSION))
 		<li><a class="home" href="consulta.php?maquinaria=equipoSoldadura">Maquinaria de soldadura</a></li>
 	  	<li><a href="consulta.php?maquinaria=repuesto">Repuestos</a></li>
 	  	<li><a href="consulta.php?maquinaria=consumible">Consumibles</a></li>
-	  	<li><a href="facturas.php">Facturas</a></li>
+	  	<li><a href="perfil.php">Mi Perfil</a></li>
 	  	
 			<?php 
    if(isset($_SESSION['logueado'])){

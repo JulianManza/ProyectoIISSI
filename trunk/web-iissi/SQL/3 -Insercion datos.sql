@@ -49,18 +49,18 @@ INSERT INTO productos (CODIGO, NOMBRE, DESCRIPCION, TIPOPRODUCTO, DISPONIBILIDAD
 values (0,'Carbo NiCu','Electrodo para  Ni/Cu','consumible','Disponible', 9.99,'...','...', 552,'1071','NiCu');
 
 INSERT INTO productos (CODIGO, NOMBRE, DESCRIPCION, TIPOPRODUCTO, DISPONIBILIDAD, PRECIO, URLDOCU, URLIMG, STOCK, PARTNUMBER, MODELO) 
-values (0,'Hilo Tubular','Hilo tubular de NiCu 23mm','consumible','Disponible', 59.95,'...','...', 72,'5237','23mm');
+values (0,'Hilo Tubular','Hilo tubular de NiCu 23mm','consumible','Disponible', 59.95,'...','https://www.carboweld.de/Elem_Produkte/draht-rot.gif', 72,'5237','23mm');
 
 
 
 INSERT INTO productos (CODIGO, NOMBRE, DESCRIPCION, TIPOPRODUCTO, DISPONIBILIDAD, PRECIO, URLDOCU, URLIMG, STOCK, PARTNUMBER, MODELO) 
-values (0,'Pinzas Optimus','Pinzas alta intensidad','repuesto','Disponible', 63.99,'...','...', 21,'300optimus','300');
+values (0,'Pinzas Optimus','Pinzas alta intensidad','repuesto','Disponible', 63.99,'...','http://saind.eu/wp-content/uploads/2016/07/pinzas.png', 21,'300optimus','300');
 
 INSERT INTO productos (CODIGO, NOMBRE, DESCRIPCION, TIPOPRODUCTO, DISPONIBILIDAD, PRECIO, URLDOCU, URLIMG, STOCK, PARTNUMBER, MODELO) 
-values (0,'Gafas Soplete','Gafas protectoras para Soplete','repuesto','Disponible', 60.99,'...','...', 12,'2600','soplete');
+values (0,'Gafas Soplete','Gafas protectoras para Soplete','repuesto','Disponible', 60.99,'...','http://saind.eu/wp-content/uploads/2016/07/gafas.png', 12,'2600','soplete');
 
 INSERT INTO productos (CODIGO, NOMBRE, DESCRIPCION, TIPOPRODUCTO, DISPONIBILIDAD, PRECIO, URLDOCU, URLIMG, STOCK, PARTNUMBER, MODELO) 
-values (0,'Borna Macho','Conector 10-25','repuesto','Disponible', 2.50,'...','...', 1002,'bor1','10-25');
+values (0,'Borna Macho','Conector 10-25','repuesto','Disponible', 2.50,'...','http://saind.eu/wp-content/uploads/2015/06/conectores.png', 1002,'bor1','10-25');
 
 INSERT INTO clientes ( DNI,NOMBRE_CLI, APELLIDOS, DIRECCION, IDMUNICIPIO, EMAIL, PASS) 
         VALUES('test', 'test', 'test', 'test', 1, 'test@test.com', 'test');

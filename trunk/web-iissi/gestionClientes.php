@@ -12,12 +12,12 @@
 		$email = $usuario["email"];
 		$pass  = $usuario["pass"];
 		$stmt=$conexion->prepare($consulta);
-		$stmt->bindParam(':nif',$usuario["nif"]);
-		$stmt->bindParam(':nombre',$usuario["nombre"]);
-		$stmt->bindParam(':ape',$usuario["apellidos"]);
-		$stmt->bindParam(':dir',$usuario["calle"]);
+		$stmt->bindParam(':nif',$usuario["nif"], PDO::PARAM_STR);
+		$stmt->bindParam(':nombre',$usuario["nombre"], PDO::PARAM_STR);
+		$stmt->bindParam(':ape',$usuario["apellidos"], PDO::PARAM_STR);
+		$stmt->bindParam(':dir',$usuario["calle"], PDO::PARAM_STR);
 		$stmt->bindParam(':mun',$usuario["municipio"]);
-		$stmt->bindParam(':email',$usuario["email"]);
+		$stmt->bindParam(':email',$usuario["email"], PDO::PARAM_STR);
 		$stmt->bindParam(':pass',$usuario["pass"]);
 		$stmt->execute();
 		return consultarUsuario($conexion, $email, $pass);
@@ -62,6 +62,12 @@ $stmt->execute();
 		header("Location: excepciones.php");
     }
 */
+}
+function eliminar_cliente($conexion, $email) {
+	$sql = "DELETE FROM clientes WHERE EMAIL =  :email";
+$stmt = $conexion->prepare($sql);
+$stmt->bindParam(':email', $email, PDO::PARAM_STR);
+$stmt->execute();
 }
   
 function consultarUsuario($conexion,$email,$pass) {

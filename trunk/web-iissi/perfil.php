@@ -134,10 +134,18 @@ echo "</div>";
 			<datalist id="opcionesMunicipios">
 			</datalist>
 	</div>
+
 	<button id="edit" name="edit" type="submit"  value="editar" class="edit">
 						Editar
 				</button> 
     </fieldset>
+		</form>
+		<form id="bajaUsuario" method="get" action="borrar.php">
+  		<fieldset id="datosFormu" name="datosFormu" class="datosFormu">
+
+			<input id="email" name="email"  type="hidden" value="<?php echo $cliente["EMAIL"];?>" required/ readonly><br>
+		<button id="alta" name="alta" type="submit" value="Darse de alta"><?php ;?>Darse de Baja</button>
+		</fieldset>
 		</form>
 		<?php
 		include_once ("pie.php");
